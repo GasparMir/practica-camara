@@ -1,0 +1,11 @@
+{
+  "name": "Cámara PWA",
+  "short_name": "CamaraPWA",
+  "description": "Aplicación PWA para tomar fotos con cámara frontal o trasera.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait"
+}
