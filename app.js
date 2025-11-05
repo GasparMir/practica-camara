@@ -33,6 +33,12 @@ async function openCamera() {
     }
 }
 
+async function switchCamera() {
+    usingFrontCamera = !usingFrontCamera;
+    closeCamera();
+    await openCamera();
+}
+
 // Función para tomar foto
 function takePhoto() {
     if (!stream) {
@@ -49,8 +55,7 @@ function takePhoto() {
     const img = document.createElement('img');
     img.src = imageDataURL;
     gallery.appendChild(img);
-    
-    closeCamera();
+
 }
 
 
