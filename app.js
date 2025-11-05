@@ -7,6 +7,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 let stream = null;
+let usingFrontCamera = false; 
 
 // Función para abrir la cámara
 async function openCamera() {
@@ -33,6 +34,7 @@ async function openCamera() {
     }
 }
 
+// Cambiar camara
 async function switchCamera() {
     usingFrontCamera = !usingFrontCamera;
     closeCamera();
