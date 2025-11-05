@@ -7,6 +7,23 @@
     <title>Cámara PWA</title>
     <link rel="manifest" href="manifest.json">
 </head>
+<style>
+#gallery {
+    display: flex;          /* Alinea las imágenes en fila */
+    overflow-x: auto;       /* Permite deslizar horizontalmente */
+    gap: 10px;              /* Espacio entre fotos */
+    padding: 10px 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+#gallery img {
+    height: 100px;          /* Tamaño de miniatura */
+    flex-shrink: 0;         /* Evita que se reduzcan al hacer scroll */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+</style>
 <body>
     <h1>Cámara PWA</h1>
     <button id="openCamera">Abrir Cámara</button>
