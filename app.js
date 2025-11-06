@@ -35,7 +35,6 @@ async function openCamera() {
         openCameraBtn.textContent = 'Cámara Abierta';
         openCameraBtn.disabled = true;
 
-        // Crear botón de cerrar si no existe
         if (!closeBtn) {
             closeBtn = document.createElement('button');
             closeBtn.textContent = 'X';
@@ -103,11 +102,11 @@ switchCameraBtn.addEventListener('click', switchCamera);
 // Limpiar stream al cerrar página
 window.addEventListener('beforeunload', closeCamera);
 
-// Detectar si los permisos se revocan mientras la app está abierta
-navigator.permissions?.query({ name: 'camera' }).then(permissionStatus => {
-    permissionStatus.onchange = () => {
-        if (permissionStatus.state !== 'granted') {
-            closeCamera();
-        }
-    };
+// Registrar Service Worker
+document.addEventListener('DOMContentLoaded', () => {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+            .then(() => console.log('Service Worker registrado'))
+            .catch(err => console.error('Error registrando SW:', err));
+    }
 });
