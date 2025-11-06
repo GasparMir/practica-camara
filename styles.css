@@ -90,7 +90,7 @@
         margin-top: 10px
     }
 
-    .close-camera-btn {
+.close-camera-btn {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -101,4 +101,10 @@
     border: none;
     font-size: 16px;
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    line-height: 1; 
+    padding: 0;              
 }
