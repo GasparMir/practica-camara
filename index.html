@@ -26,7 +26,7 @@
     }
 
     button:hover:not(:disabled) {
-        background-color: #95bce6;
+        background-color: #2163aa;
         transform: scale(1.05);
     }
 
@@ -41,18 +41,18 @@
     #gallery {
         display: flex;
         overflow-x: auto; 
+        overflow-y: hidden;      /* oculta cualquier scroll vertical */
         gap: 10px;
         padding: 10px 0;
         border-top: 1px solid #ccc;
         border-bottom: 1px solid #ccc;
-        justify-content: center;
-        flex-wrap: wrap; 
+        scroll-behavior: smooth; /* desplazamiento suave */
     }
 
     #gallery img {
         height: 80px;         
         width: 100px;
-        flex-shrink: 0;
+        flex-shrink: 0;          /* evita que se encojan */
         border-radius: 5px;
         object-fit: cover;
         cursor: pointer;
@@ -60,7 +60,7 @@
     }
 
     #gallery img:hover {
-        transform: scale(1.1);
+        transform: scale(1.4);
     }
 
     h1 {
