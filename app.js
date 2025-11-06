@@ -11,15 +11,21 @@ const gallery = document.getElementById('gallery');
 let stream = null;
 let usingFrontCamera = false; // false = trasera, true = frontal
 
-// Abrir cámara
+// Abrir cámara según la cámara seleccionada
 async function openCamera() {
     try {
+        // Detener stream anterior si existe
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+        }
+
         const constraints = {
             video: {
                 facingMode: usingFrontCamera ? 'user' : 'environment',
                 width: { ideal: 320 },
                 height: { ideal: 240 }
-            }
+            },
+            audio: false
         };
 
         stream = await navigator.mediaDevices.getUserMedia(constraints);
@@ -29,20 +35,16 @@ async function openCamera() {
         openCameraBtn.textContent = 'Cámara Abierta';
         openCameraBtn.disabled = true;
 
-        console.log('Cámara abierta exitosamente');
+        console.log('Cámara abierta', usingFrontCamera ? 'frontal' : 'trasera');
     } catch (error) {
         console.error('Error al acceder a la cámara:', error);
-        alert('No se pudo acceder a la cámara. Asegúrate de dar permisos.');
+        alert('No se pudo acceder a la cámara. Revisa los permisos.');
     }
 }
 
 // Cambiar cámara
 async function switchCamera() {
     usingFrontCamera = !usingFrontCamera;
-
-    if (stream) {
-        stream.getTracks().forEach(track => track.stop());
-    }
     await openCamera();
 }
 
@@ -56,9 +58,7 @@ function takePhoto() {
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     const imageDataURL = canvas.toDataURL('image/png');
 
-    console.log('Foto capturada en base64:', imageDataURL.length, 'caracteres');
-
-    // Mostrar la imagen capturada en galería horizontal
+    // Mostrar en galería horizontal
     const img = document.createElement('img');
     img.src = imageDataURL;
     gallery.appendChild(img);
@@ -75,8 +75,6 @@ function closeCamera() {
 
         openCameraBtn.textContent = 'Abrir Cámara';
         openCameraBtn.disabled = false;
-
-        console.log('Cámara cerrada');
     }
 }
 
@@ -86,6 +84,4 @@ takePhotoBtn.addEventListener('click', takePhoto);
 switchCameraBtn.addEventListener('click', switchCamera);
 
 // Limpiar stream al cerrar página
-window.addEventListener('beforeunload', () => {
-    closeCamera();
-});
+window.addEventListener('beforeunload', closeCamera);
