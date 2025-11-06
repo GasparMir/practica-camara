@@ -110,3 +110,43 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(err => console.error('Error registrando SW:', err));
     }
 });
+
+
+// Modal para ver imagen ampliada
+const modal = document.createElement('div');
+modal.id = 'modal';
+modal.style.display = 'none';
+modal.style.position = 'fixed';
+modal.style.top = 0;
+modal.style.left = 0;
+modal.style.width = '100%';
+modal.style.height = '100%';
+modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+modal.style.justifyContent = 'center';
+modal.style.alignItems = 'center';
+modal.style.zIndex = '100';
+modal.style.display = 'flex';
+document.body.appendChild(modal);
+
+const modalImg = document.createElement('img');
+modal.appendChild(modalImg);
+
+const closeModal = document.createElement('span');
+closeModal.textContent = 'X';
+closeModal.style.position = 'absolute';
+closeModal.style.top = '20px';
+closeModal.style.right = '20px';
+closeModal.style.color = 'white';
+closeModal.style.fontSize = '30px';
+closeModal.style.cursor = 'pointer';
+modal.appendChild(closeModal);
+
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Cuando creamos cada imagen en la galería:
+img.addEventListener('click', () => {
+    modalImg.src = img.src;
+    modal.style.display = 'flex';
+});
