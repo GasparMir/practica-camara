@@ -43,8 +43,8 @@
     }
 
     #gallery img {
-        width: 107px;           
-        height: 80px;
+        width: 120px;         
+        height: 90px;         
         flex: 0 0 auto;
         border-radius: 5px;
         object-fit: cover;     
