@@ -6,24 +6,30 @@
     <meta name="theme-color" content="#000000">
     <title>Cámara PWA</title>
     <link rel="manifest" href="manifest.json">
-    <style>
-        #gallery {
-            display: flex;
-            overflow-x: auto; 
-            gap: 10px;
-            padding: 10px 0;
-            border-top: 1px solid #ccc;
-            border-bottom: 1px solid #ccc;
-        }
+<style>
+    #gallery {
+        display: flex;
+        overflow-x: auto; 
+        gap: 10px;
+        padding: 10px 0;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
 
-        #gallery img {
-            height: 240px;       /* altura igual a la cámara */
-            width: 320px;         /* ancho proporcional */
-            flex-shrink: 0;      /* evita que se encojan */
-            border-radius: 5px;
-            object-fit: contain;   /* asegura que la imagen no se deforme */
-        }
-    </style>
+    #gallery img {
+        height: 80px;          /* altura reducida */
+        width: 100px;          /* ancho proporcional */
+        flex-shrink: 0;
+        border-radius: 5px;
+        object-fit: cover;     /* rellena el espacio manteniendo proporciones */
+        cursor: pointer;       /* opcional: muestra que se puede hacer clic */
+        transition: transform 0.2s ease; /* animación sutil */
+    }
+
+    #gallery img:hover {
+        transform: scale(1.1); /* efecto zoom al pasar el cursor */
+    }
+</style>
 </head>
 <body>
     <h1>Cámara PWA</h1>
@@ -36,8 +42,8 @@
         <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
     </div>
 
-    <h2>Fotos tomadas</h2>
-    <div id="gallery" width="320" height="240"></div>
+    <h6>Fotos tomadas</h6>
+    <div id="gallery"></div>
 
     <script src="app.js"></script>
     <script>
