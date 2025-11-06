@@ -41,14 +41,21 @@
         white-space: nowrap;
         scroll-behavior: smooth;
     }
+    #gallery {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 10px;
+        padding: 10px 0;
+    }
+
     #gallery img {
-        width: 107px;      
-        height: 80px;      
         flex: 0 0 auto;
+        width: calc(80px * 320 / 240); /* ancho = alto * (canvasWidth / canvasHeight) */
+        height: 80px;                  /* alto fijo */
+        object-fit: cover;              /* recorta si sobra */
         border-radius: 5px;
-        object-fit: cover;  
         cursor: pointer;
-        transition: transform 0.2s ease;
     }
 
 
