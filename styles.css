@@ -41,16 +41,16 @@
         white-space: nowrap;
         scroll-behavior: smooth;
     }
-
     #gallery img {
-        width: 120px;         
-        height: 90px;         
+        width: 107px;      
+        height: 80px;      
         flex: 0 0 auto;
         border-radius: 5px;
-        object-fit: cover;     
+        object-fit: cover;  
         cursor: pointer;
         transition: transform 0.2s ease;
     }
+
 
     #gallery img:hover {
         transform: scale(1.1);
