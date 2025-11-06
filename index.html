@@ -7,6 +7,56 @@
     <title>Cámara PWA</title>
     <link rel="manifest" href="manifest.json">
 <style>
+        /* --- ESTILO DE BOTONES --- */
+    button {
+        display: inline-block;
+        background-color: #007bff;   /* azul moderno */
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 12px 20px;          /* más grandes y cómodos al tacto */
+        font-size: 16px;
+        margin: 6px 4px;             /* espacio entre botones */
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    button:hover:not(:disabled) {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    /* Asegura que los botones se adapten bien en pantallas pequeñas */
+    @media (max-width: 600px) {
+        button {
+            width: 90%;             /* casi todo el ancho en móvil */
+            font-size: 18px;
+            padding: 14px 0;
+        }
+    }
+
+    h1, h6 {
+        font-family: Arial, sans-serif;
+        margin: 12px 0;
+    }
+
+    body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        padding: 10px;
+        background-color: #f8f8f8;
+    }
+
+    video {
+        border-radius: 10px;
+        background: black;
+    }
+
     #gallery {
         display: flex;
         overflow-x: auto; 
