@@ -40,19 +40,21 @@
 
     #gallery {
         display: flex;
-        overflow-x: auto; 
-        overflow-y: hidden;      /* oculta cualquier scroll vertical */
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
         gap: 10px;
         padding: 10px 0;
         border-top: 1px solid #ccc;
         border-bottom: 1px solid #ccc;
-        scroll-behavior: smooth; /* desplazamiento suave */
+        white-space: nowrap;
+        scroll-behavior: smooth;
     }
 
     #gallery img {
-        height: 80px;         
+        height: 80px;
         width: 100px;
-        flex-shrink: 0;          /* evita que se encojan */
+        flex: 0 0 auto;
         border-radius: 5px;
         object-fit: cover;
         cursor: pointer;
@@ -60,7 +62,16 @@
     }
 
     #gallery img:hover {
-        transform: scale(1.4);
+        transform: scale(1.1);
+    }
+
+    #gallery::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    #gallery::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 3px;
     }
 
     h1 {

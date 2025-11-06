@@ -1,4 +1,4 @@
-// Referencias a elementos del DOM
+// DOM
 const openCameraBtn = document.getElementById('openCamera');
 const cameraContainer = document.getElementById('cameraContainer');
 const video = document.getElementById('video');
@@ -9,12 +9,11 @@ const ctx = canvas.getContext('2d');
 const gallery = document.getElementById('gallery');
 
 let stream = null;
-let usingFrontCamera = false; // false = trasera, true = frontal
+let usingFrontCamera = false; 
 
 // Abrir cámara según la cámara seleccionada
 async function openCamera() {
     try {
-        // Detener stream anterior si existe
         if (stream) {
             stream.getTracks().forEach(track => track.stop());
         }
@@ -58,7 +57,6 @@ function takePhoto() {
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     const imageDataURL = canvas.toDataURL('image/png');
 
-    // Mostrar en galería horizontal
     const img = document.createElement('img');
     img.src = imageDataURL;
     gallery.appendChild(img);
