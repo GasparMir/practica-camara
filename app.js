@@ -10,6 +10,7 @@ const gallery = document.getElementById('gallery');
 
 let stream = null;
 let usingFrontCamera = false; 
+let closeBtn = null;
 
 // Abrir cámara según la cámara seleccionada
 async function openCamera() {
@@ -34,10 +35,32 @@ async function openCamera() {
         openCameraBtn.textContent = 'Cámara Abierta';
         openCameraBtn.disabled = true;
 
+        // Crear botón de cerrar si no existe
+        if (!closeBtn) {
+            closeBtn = document.createElement('button');
+            closeBtn.textContent = 'X';
+            closeBtn.style.position = 'absolute';
+            closeBtn.style.top = '10px';
+            closeBtn.style.right = '10px';
+            closeBtn.style.backgroundColor = 'red';
+            closeBtn.style.color = 'white';
+            closeBtn.style.borderRadius = '50%';
+            closeBtn.style.width = '30px';
+            closeBtn.style.height = '30px';
+            closeBtn.style.fontWeight = 'bold';
+            closeBtn.style.border = 'none';
+            closeBtn.style.cursor = 'pointer';
+            closeBtn.addEventListener('click', closeCamera);
+            cameraContainer.appendChild(closeBtn);
+            cameraContainer.style.position = 'relative';
+        }
+
         console.log('Cámara abierta', usingFrontCamera ? 'frontal' : 'trasera');
     } catch (error) {
         console.error('Error al acceder a la cámara:', error);
         alert('No se pudo acceder a la cámara. Revisa los permisos.');
+        openCameraBtn.textContent = 'Abrir Cámara';
+        openCameraBtn.disabled = false;
     }
 }
 
@@ -69,10 +92,16 @@ function closeCamera() {
         stream = null;
 
         video.srcObject = null;
-        cameraContainer.style.display = 'none';
+    }
 
-        openCameraBtn.textContent = 'Abrir Cámara';
-        openCameraBtn.disabled = false;
+    cameraContainer.style.display = 'none';
+    openCameraBtn.textContent = 'Abrir Cámara';
+    openCameraBtn.disabled = false;
+
+    // Remover botón de cerrar si existe
+    if (closeBtn) {
+        closeBtn.remove();
+        closeBtn = null;
     }
 }
 
@@ -83,3 +112,12 @@ switchCameraBtn.addEventListener('click', switchCamera);
 
 // Limpiar stream al cerrar página
 window.addEventListener('beforeunload', closeCamera);
+
+// Detectar si los permisos se revocan mientras la app está abierta
+navigator.permissions?.query({ name: 'camera' }).then(permissionStatus => {
+    permissionStatus.onchange = () => {
+        if (permissionStatus.state !== 'granted') {
+            closeCamera();
+        }
+    };
+});
