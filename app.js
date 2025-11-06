@@ -39,17 +39,7 @@ async function openCamera() {
         if (!closeBtn) {
             closeBtn = document.createElement('button');
             closeBtn.textContent = 'X';
-            closeBtn.style.position = 'absolute';
-            closeBtn.style.top = '10px';
-            closeBtn.style.right = '10px';
-            closeBtn.style.backgroundColor = 'red';
-            closeBtn.style.color = 'white';
-            closeBtn.style.borderRadius = '50%';
-            closeBtn.style.width = '30px';
-            closeBtn.style.height = '30px';
-            closeBtn.style.fontWeight = 'bold';
-            closeBtn.style.border = 'none';
-            closeBtn.style.cursor = 'pointer';
+            closeBtn.classList.add('close-camera-btn');
             closeBtn.addEventListener('click', closeCamera);
             cameraContainer.appendChild(closeBtn);
             cameraContainer.style.position = 'relative';
